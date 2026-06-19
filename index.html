@@ -17,7 +17,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* ===== INTRO ===== */
+/* INTRO */
 #intro{
 position:fixed;
 inset:0;
@@ -33,7 +33,6 @@ text-align:center;
 #intro h1{
 font-family:'Cinzel';
 letter-spacing:2px;
-animation:fadeIn 2s ease;
 }
 
 #intro button{
@@ -58,7 +57,6 @@ linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
 url('https://images.unsplash.com/photo-1523438097201-512ae7d59c0a');
 background-size:cover;
 background-position:center;
-position:relative;
 }
 
 .hero h1{
@@ -92,7 +90,7 @@ color:gold;
 /* CARD */
 .card{
 background:rgba(255,255,255,0.06);
-backdrop-filter: blur(12px);
+backdrop-filter: blur(10px);
 padding:20px;
 border-radius:15px;
 margin-top:15px;
@@ -104,7 +102,6 @@ border:1px solid rgba(255,255,255,0.1);
 display:flex;
 justify-content:center;
 gap:10px;
-margin-top:15px;
 }
 
 .box{
@@ -114,31 +111,33 @@ border-radius:10px;
 min-width:60px;
 }
 
-/* PARTICLE FLOWER */
+/* GALLERY */
+.gallery{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
+
+.gallery img{
+width:100%;
+border-radius:10px;
+}
+
+/* PARTICLE */
 .particle{
 position:fixed;
 top:-10px;
-width:10px;
-height:10px;
+width:8px;
+height:8px;
 background:gold;
 border-radius:50%;
-opacity:.7;
 animation:fall linear infinite;
 z-index:1;
 }
 
 @keyframes fall{
-to{
-transform:translateY(110vh) rotate(360deg);
+to{transform:translateY(110vh);}
 }
-}
-
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(20px);}
-to{opacity:1;transform:translateY(0);}
-}
-
-.fade{animation:fadeIn 1s ease;}
 
 </style>
 </head>
@@ -155,7 +154,7 @@ to{opacity:1;transform:translateY(0);}
 
 <!-- HERO -->
 <div class="hero">
-<div class="fade">
+<div>
 <h1>Arif & Larasaty</h1>
 <p>Bride & Groom</p>
 <button class="btn" onclick="scrollKeIsi()">Lihat Undangan</button>
@@ -175,6 +174,11 @@ Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir da
 ARIF CAHYO (TAHUL) & LARASATY
 </div>
 
+<h2>Wedding Event</h2>
+<div class="card">
+Akad Nikah<br>Resepsi<br>Sabtu, 21 Juni 2026
+</div>
+
 <h2>Countdown</h2>
 <div class="card">
 <div class="countdown">
@@ -185,22 +189,45 @@ ARIF CAHYO (TAHUL) & LARASATY
 </div>
 </div>
 
+<h2>Wedding Gallery</h2>
+<div class="card">
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1523438097201-512ae7d59c0a">
+<img src="https://images.unsplash.com/photo-1523438097201-512ae7d59c0a">
+</div>
+</div>
+
+<h2>RSVP</h2>
+<div class="card">
+<input placeholder="Nama">
+<select>
+<option>Akan Hadir</option>
+<option>Tidak Hadir</option>
+</select>
+<input type="number" placeholder="Jumlah Tamu">
+<button class="btn">Kirim RSVP</button>
+</div>
+
+<h2>Doa & Ucapan</h2>
+<div class="card">
+<input placeholder="Nama">
+<textarea placeholder="Ucapan..."></textarea>
+<button class="btn">Kirim</button>
+</div>
+
 </section>
 
 <script>
 
-/* MUSIC */
 let music = new Audio("https://cdn.pixabay.com/audio/2022/03/15/audio_115b9c0d6b.mp3");
 music.loop = true;
 music.volume = 0.5;
 
-/* INTRO CLOSE */
 function bukaUndangan(){
 document.getElementById("intro").style.display="none";
 music.play().catch(()=>{});
 }
 
-/* SCROLL */
 function scrollKeIsi(){
 document.getElementById("isi").scrollIntoView({behavior:"smooth"});
 }
@@ -218,18 +245,16 @@ document.getElementById("m").innerText = Math.floor(diff%(1000*60*60)/(1000*60))
 document.getElementById("s").innerText = Math.floor(diff%(1000*60)/1000);
 },1000);
 
-/* FLOWER PARTICLES */
-function createFlower(){
-const f = document.createElement("div");
-f.classList.add("particle");
-f.style.left = Math.random()*100 + "vw";
-f.style.animationDuration = (3+Math.random()*5) + "s";
+/* PARTICLE */
+function drop(){
+const f=document.createElement("div");
+f.className="particle";
+f.style.left=Math.random()*100+"vw";
+f.style.animationDuration=(3+Math.random()*5)+"s";
 document.body.appendChild(f);
-
-setTimeout(()=>{f.remove();},8000);
+setTimeout(()=>f.remove(),8000);
 }
-
-setInterval(createFlower,200);
+setInterval(drop,200);
 
 </script>
 
