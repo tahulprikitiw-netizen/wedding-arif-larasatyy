@@ -12,9 +12,14 @@
 body{
 margin:0;
 font-family:'Poppins',sans-serif;
-background:#0b0b0b;
 color:white;
 overflow-x:hidden;
+
+/* BATIK JAWA SOFT */
+background:
+linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.85)),
+url('https://www.transparenttextures.com/patterns/batik.png');
+background-size:280px;
 }
 
 /* INTRO */
@@ -32,6 +37,7 @@ text-align:center;
 
 #intro h1{
 font-family:'Cinzel';
+color:#f5d06f;
 letter-spacing:2px;
 }
 
@@ -40,7 +46,7 @@ margin-top:20px;
 padding:12px 25px;
 border:none;
 border-radius:30px;
-background:gold;
+background:#d4af37;
 font-weight:bold;
 cursor:pointer;
 }
@@ -52,20 +58,23 @@ display:flex;
 justify-content:center;
 align-items:center;
 text-align:center;
+
 background:
-linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
-url('https://images.unsplash.com/photo-1523438097201-512ae7d59c0a');
+linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
+url('https://images.unsplash.com/photo-1601918774946-25832a4be0d8');
 background-size:cover;
 background-position:center;
 }
 
 .hero h1{
 font-family:'Cinzel';
+color:#f5d06f;
 font-size:2.5rem;
+text-shadow:0 0 10px rgba(255,215,0,0.3);
 }
 
 .btn{
-background:gold;
+background:#d4af37;
 border:none;
 padding:12px 25px;
 border-radius:30px;
@@ -84,17 +93,17 @@ text-align:center;
 
 h2{
 font-family:'Cinzel';
-color:gold;
+color:#f5d06f;
 }
 
 /* CARD */
 .card{
-background:rgba(255,255,255,0.06);
+background:rgba(15,15,15,0.6);
 backdrop-filter: blur(10px);
 padding:20px;
 border-radius:15px;
 margin-top:15px;
-border:1px solid rgba(255,255,255,0.1);
+border:1px solid rgba(212,175,55,0.2);
 }
 
 /* COUNTDOWN */
@@ -109,40 +118,37 @@ background:#111;
 padding:10px;
 border-radius:10px;
 min-width:60px;
+border:1px solid #d4af37;
 }
 
-/* GALLERY */
-.gallery{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-}
-
-.gallery img{
-width:100%;
-border-radius:10px;
-}
-
-/* PARTICLE */
+/* FLOWER (MELATI) */
 .particle{
 position:fixed;
 top:-10px;
 width:8px;
 height:8px;
-background:gold;
+background:white;
 border-radius:50%;
+opacity:0.8;
 animation:fall linear infinite;
 z-index:1;
 }
 
 @keyframes fall{
-to{transform:translateY(110vh);}
+to{
+transform:translateY(110vh);
+}
 }
 
 </style>
 </head>
 
 <body>
+
+<!-- GAMELAN MUSIC -->
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/audio/2022/03/10/audio_3b3b4f1d6f.mp3" type="audio/mp3">
+</audio>
 
 <!-- INTRO -->
 <div id="intro">
@@ -166,17 +172,12 @@ to{transform:translateY(110vh);}
 
 <h2>Undangan</h2>
 <div class="card">
-Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dalam acara pernikahan kami.
+Dengan penuh hormat kami mengundang Anda untuk hadir dalam pernikahan kami.
 </div>
 
 <h2>Bride & Groom</h2>
 <div class="card">
 ARIF CAHYO (TAHUL) & LARASATY
-</div>
-
-<h2>Wedding Event</h2>
-<div class="card">
-Akad Nikah<br>Resepsi<br>Sabtu, 21 Juni 2026
 </div>
 
 <h2>Countdown</h2>
@@ -189,45 +190,21 @@ Akad Nikah<br>Resepsi<br>Sabtu, 21 Juni 2026
 </div>
 </div>
 
-<h2>Wedding Gallery</h2>
-<div class="card">
-<div class="gallery">
-<img src="https://images.unsplash.com/photo-1523438097201-512ae7d59c0a">
-<img src="https://images.unsplash.com/photo-1523438097201-512ae7d59c0a">
-</div>
-</div>
-
-<h2>RSVP</h2>
-<div class="card">
-<input placeholder="Nama">
-<select>
-<option>Akan Hadir</option>
-<option>Tidak Hadir</option>
-</select>
-<input type="number" placeholder="Jumlah Tamu">
-<button class="btn">Kirim RSVP</button>
-</div>
-
-<h2>Doa & Ucapan</h2>
-<div class="card">
-<input placeholder="Nama">
-<textarea placeholder="Ucapan..."></textarea>
-<button class="btn">Kirim</button>
-</div>
-
 </section>
 
 <script>
 
-let music = new Audio("https://cdn.pixabay.com/audio/2022/03/15/audio_115b9c0d6b.mp3");
-music.loop = true;
+/* MUSIC */
+const music = document.getElementById("music");
 music.volume = 0.5;
 
+/* INTRO */
 function bukaUndangan(){
 document.getElementById("intro").style.display="none";
 music.play().catch(()=>{});
 }
 
+/* SCROLL */
 function scrollKeIsi(){
 document.getElementById("isi").scrollIntoView({behavior:"smooth"});
 }
@@ -245,8 +222,8 @@ document.getElementById("m").innerText = Math.floor(diff%(1000*60*60)/(1000*60))
 document.getElementById("s").innerText = Math.floor(diff%(1000*60)/1000);
 },1000);
 
-/* PARTICLE */
-function drop(){
+/* MELATI FALL */
+function createFlower(){
 const f=document.createElement("div");
 f.className="particle";
 f.style.left=Math.random()*100+"vw";
@@ -254,7 +231,7 @@ f.style.animationDuration=(3+Math.random()*5)+"s";
 document.body.appendChild(f);
 setTimeout(()=>f.remove(),8000);
 }
-setInterval(drop,200);
+setInterval(createFlower,200);
 
 </script>
 
