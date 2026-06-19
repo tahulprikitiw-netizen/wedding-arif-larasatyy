@@ -3,18 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wedding Invitation</title>
+<title>Arif & Larasaty Wedding</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 
 body{
 margin:0;
 font-family:'Poppins',sans-serif;
-background:#f5f5f5;
-color:#333;
+background:#0b0b0b;
+color:white;
+overflow-x:hidden;
 scroll-behavior:smooth;
+}
+
+/* ===== CINEMATIC INTRO ===== */
+#intro{
+position:fixed;
+inset:0;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
+text-align:center;
+}
+
+#intro h1{
+font-family:'Cinzel';
+font-size:2.2rem;
+letter-spacing:2px;
+animation:fadeIn 2s ease;
+}
+
+#intro button{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:gold;
+font-weight:bold;
+cursor:pointer;
 }
 
 /* HERO */
@@ -29,7 +60,6 @@ linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
 url('https://images.unsplash.com/photo-1523438097201-512ae7d59c0a');
 background-size:cover;
 background-position:center;
-color:white;
 }
 
 .hero h1{
@@ -45,6 +75,11 @@ border-radius:30px;
 cursor:pointer;
 font-weight:bold;
 margin-top:15px;
+transition:.3s;
+}
+
+.btn:hover{
+transform:scale(1.05);
 }
 
 /* SECTION */
@@ -57,25 +92,18 @@ text-align:center;
 
 h2{
 font-family:'Cinzel';
-color:#b68d2e;
+color:gold;
+letter-spacing:1px;
 }
 
 /* CARD */
 .card{
-background:white;
+background:rgba(255,255,255,0.06);
+backdrop-filter: blur(10px);
 padding:20px;
-border-radius:12px;
+border-radius:15px;
 margin-top:15px;
-box-shadow:0 5px 20px rgba(0,0,0,.1);
-}
-
-/* INPUT */
-input,textarea,select{
-width:100%;
-padding:10px;
-margin-top:10px;
-border-radius:8px;
-border:1px solid #ccc;
+border:1px solid rgba(255,255,255,0.1);
 }
 
 /* COUNTDOWN */
@@ -88,22 +116,20 @@ margin-top:15px;
 
 .box{
 background:#111;
-color:#fff;
+color:white;
 padding:10px;
 border-radius:10px;
 min-width:60px;
 }
 
-/* GALLERY */
-.gallery{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
+/* ANIMATION */
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
 }
 
-.gallery img{
-width:100%;
-border-radius:10px;
+.fade{
+animation:fadeIn 1s ease;
 }
 
 </style>
@@ -111,37 +137,37 @@ border-radius:10px;
 
 <body>
 
+<!-- CINEMATIC INTRO -->
+<div id="intro">
+<h1>The Wedding Of</h1>
+<h1>ARIF CAHYO (TAHUL)</h1>
+<h1>& LARASATY</h1>
+<button onclick="bukaUndangan()">Buka Undangan</button>
+</div>
+
 <!-- HERO -->
 <div class="hero">
-<div>
-<h1>The Wedding Of</h1>
-<h2>ARIF CAHYO (TAHUL) & LARASATY</h2>
+<div class="fade">
+<h1>Arif & Larasaty</h1>
 <p>Bride & Groom</p>
-
-<button class="btn" onclick="bukaUndangan()">Buka Undangan</button>
+<button class="btn" onclick="scrollKeIsi()">Lihat Undangan</button>
 </div>
 </div>
 
-<!-- INTRO -->
+<!-- CONTENT -->
 <section class="section" id="isi">
+
 <h2>Undangan</h2>
 <div class="card">
-Tanpa mengurangi rasa hormat, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.
+Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dalam acara pernikahan kami.
 </div>
-</section>
 
-<!-- BRIDE & GROOM -->
-<section class="section">
 <h2>Bride & Groom</h2>
 <div class="card">
-ARIF CAHYO (TAHUL) & LARASATY <br><br>
-Putri & Putra tercinta dari keluarga besar kami.
+ARIF CAHYO (TAHUL) & LARASATY
 </div>
-</section>
 
-<!-- COUNTDOWN -->
-<section class="section">
-<h2>Countdown Timer</h2>
+<h2>Countdown</h2>
 <div class="card">
 <div class="countdown">
 <div class="box" id="d">0</div>
@@ -150,70 +176,25 @@ Putri & Putra tercinta dari keluarga besar kami.
 <div class="box" id="s">0</div>
 </div>
 </div>
-</section>
 
-<!-- EVENT -->
-<section class="section">
-<h2>Wedding Event</h2>
-
-<div class="card">
-<h3>Akad Nikah</h3>
-<p>Sabtu, 21 Juni 2026</p>
-</div>
-
-<div class="card">
-<h3>Resepsi</h3>
-<p>Sabtu, 21 Juni 2026</p>
-</div>
-
-</section>
-
-<!-- GALLERY -->
-<section class="section">
-<h2>Wedding Gallery</h2>
-<div class="card">
-<div class="gallery">
-<img src="https://images.unsplash.com/photo-1523438097201-512ae7d59c0a">
-<img src="https://images.unsplash.com/photo-1523438097201-512ae7d59c0a">
-</div>
-</div>
-</section>
-
-<!-- RSVP -->
-<section class="section">
-<h2>RSVP</h2>
-<div class="card">
-
-<input id="nama" placeholder="Nama">
-<select id="hadir">
-<option>Akan Hadir</option>
-<option>Tidak Hadir</option>
-</select>
-<input id="jumlah" type="number" placeholder="Jumlah Tamu">
-
-<button class="btn" onclick="kirimRSVP()">Kirim RSVP</button>
-
-</div>
-</section>
-
-<!-- GUESTBOOK -->
-<section class="section">
-<h2>Doa & Ucapan</h2>
-<div class="card">
-
-<input id="nama2" placeholder="Nama">
-<textarea id="pesan" placeholder="Isikan Nama Anda & Pesan / Doa Restu"></textarea>
-
-<button class="btn" onclick="kirimPesan()">Kirim</button>
-
-<div id="list"></div>
-
-</div>
 </section>
 
 <script>
 
+let music = new Audio("https://cdn.pixabay.com/audio/2022/03/15/audio_115b9c0d6b.mp3");
+music.loop = true;
+music.volume = 0.5;
+
 function bukaUndangan(){
+document.getElementById("intro").style.opacity="0";
+setTimeout(()=>{
+document.getElementById("intro").style.display="none";
+},800);
+
+music.play().catch(()=>{});
+}
+
+function scrollKeIsi(){
 document.getElementById("isi").scrollIntoView({behavior:"smooth"});
 }
 
@@ -229,26 +210,6 @@ document.getElementById("h").innerText = Math.floor(diff%(1000*60*60*24)/(1000*6
 document.getElementById("m").innerText = Math.floor(diff%(1000*60*60)/(1000*60));
 document.getElementById("s").innerText = Math.floor(diff%(1000*60)/1000);
 },1000);
-
-/* RSVP */
-function kirimRSVP(){
-alert("RSVP terkirim");
-}
-
-/* GUESTBOOK */
-function kirimPesan(){
-
-let nama=document.getElementById("nama2").value;
-let pesan=document.getElementById("pesan").value;
-
-fetch("https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec",{
-method:"POST",
-body:JSON.stringify({nama,pesan})
-});
-
-document.getElementById("nama2").value="";
-document.getElementById("pesan").value="";
-}
 
 </script>
 
